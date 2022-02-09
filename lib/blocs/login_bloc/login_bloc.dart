@@ -30,8 +30,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onLoginSumbitted(
       LoginSubmitted event, Emitter<LoginState> emit) async {
     emit(const LoginLoading());
-    Map userMap = {'email': event.email, 'password': event.password};
-    state.copyWith(email: state.email, password: state.password);
+    emit(state.copyWith(email: 'state.email', password: " state.password"));
+    Map userMap = {'email': state.email, 'password': state.password};
+
     print('UserMap: $userMap');
 
     try {

@@ -80,8 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                 backgroundColor: Colors.green.shade300,
               ),
               onPressed: () {
-                context.read<LoginBloc>().add(LoginSubmitted(
-                    email: 'moli.moli@gmial.com', password: 'asdfgh'));
+                context.read<LoginBloc>().add(const LoginSubmitted());
               },
               text: const Text(
                 'Login',
