@@ -1,10 +1,10 @@
 class Company {
-  final String? fullname;
-  final String? phoneNumber;
-  final String? password;
-  final String? name;
-  final String? taxCode;
-  final String? email;
+  final String fullname;
+  final String phoneNumber;
+  final String password;
+  final String name;
+  final String taxCode;
+  final String email;
 
   Company(
       {this.fullname,

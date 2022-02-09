@@ -1,19 +1,19 @@
 import 'package:smart_apaga/repositroy/models/company_model/company.dart';
 
 class User {
-  final String? fullname;
-  final String? phoneNumber;
+  final String fullname;
+  final String phoneNumber;
 
-  final String? email;
-  final String? password;
-  final Company? company;
-
-  User(
-      {this.fullname,
-      this.phoneNumber,
-      this.email,
-      this.password,
-      this.company});
+  final String email;
+  final String password;
+  final Company company;
+  User({
+    this.fullname,
+    this.phoneNumber,
+    this.email,
+    this.password,
+    this.company,
+  });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -30,7 +30,23 @@ class User {
       'phoneNumber': phoneNumber ?? '',
       'email': email ?? '',
       'password': password ?? '',
-      'company': company != null ? company!.toMap() : company,
+      'company': company != null ? company.toMap() : company,
     };
+  }
+
+  User copyWith({
+    String fullname,
+    String phoneNumber,
+    String email,
+    String password,
+    Company company,
+  }) {
+    return User(
+      fullname: fullname ?? this.fullname,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      company: company ?? this.company,
+    );
   }
 }

@@ -2,7 +2,9 @@ import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 
+// ignore: constant_identifier_names
 const String base_url = 'https://phpstack-351614-1150808.cloudwaysapps.com';
+// ignore: constant_identifier_names
 const api_url = base_url + '/api/customer/';
 
 const String googleAPIKey = 'AIzaSyAZgqO2gavNBbPsJ6tXLq3L_9Ax9WpKxpk';

@@ -1,15 +1,15 @@
 class Address {
-  String? customerAddress;
-  String? building;
-  String? apartment;
-  String? floor;
-  String? entrance;
-  String? comment;
-  String? latitude;
+  String customerAddress;
+  String building;
+  String apartment;
+  String floor;
+  String entrance;
+  String comment;
+  String latitude;
 
-  String? longitude;
-  String? placeId;
-  int? id;
+  String longitude;
+  String placeId;
+  int id;
 
   Address(
       {this.customerAddress,

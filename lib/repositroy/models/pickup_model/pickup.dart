@@ -1,15 +1,15 @@
 import 'waste.dart';
 
 class Pickup {
-  final int? addressId;
+  final int addressId;
   //final Address address;
-  final String? date;
-  final String? timeBegin;
-  final String? timeEnd;
-  final List<PickupBag>? pickupBag;
-  final String? noteForDriver;
-  final int? id;
-  final int? newBags;
+  final String date;
+  final String timeBegin;
+  final String timeEnd;
+  final List<PickupBag> pickupBag;
+  final String noteForDriver;
+  final int id;
+  final int newBags;
   Pickup({
     // this.address,
     this.addressId,
@@ -25,12 +25,12 @@ class Pickup {
   Map<dynamic, dynamic> toMap() {
     return {
       'address_id': addressId ?? '',
-      'this.newBags': this.newBags ?? '',
+     
       //'address': address.toMap() ?? null,
       'date': date ?? '',
       'timeBegin': timeBegin ?? '',
       'timeEnd': timeEnd ?? '',
-      "pickupBag": List<dynamic>.from(pickupBag!.map((x) => x.toMap())),
+      "pickupBag": List<dynamic>.from(pickupBag.map((x) => x.toMap())),
       'noteForDriver': noteForDriver ?? '',
       'newBags': newBags ?? 0
     };

@@ -1,6 +1,6 @@
 class Contact {
-  int? id;
-  String? number;
+  int id;
+  String number;
 
   Contact({
     this.id,

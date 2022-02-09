@@ -1,7 +1,7 @@
 class PickupBag {
-  int? id;
-  String? bagCode;
-  String? wasteType;
+  int id;
+  String bagCode;
+  String wasteType;
 
   PickupBag({
     this.id,
@@ -21,9 +21,9 @@ class PickupBag {
         "waste_type": wasteType ?? '',
       };
   PickupBag copyWith({
-    int? id,
-    String? bagCode,
-    String? wasteType,
+    int id,
+    String bagCode,
+    String wasteType,
   }) {
     return PickupBag(
       id: id ?? this.id,
