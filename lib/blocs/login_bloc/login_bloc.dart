@@ -16,22 +16,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onLoginEmailChanged(
       LoginEmailChanged event, Emitter<LoginState> emit) {
     final email = event.email;
-    print("state email: ${state.email} ");
+    
     emit(state.copyWith(email: email));
   }
 
   FutureOr<void> _onLoginPasswordChanged(
       LoginPasswordChanged event, Emitter<LoginState> emit) {
     final password = event.password;
-    print("state passowrd: ${state.password} ");
     emit(state.copyWith(password: password));
   }
 
   FutureOr<void> _onLoginSumbitted(
       LoginSubmitted event, Emitter<LoginState> emit) async {
     emit(const LoginLoading());
-    emit(state.copyWith(email: 'state.email', password: " state.password"));
-    Map userMap = {'email': state.email, 'password': state.password};
+
+    Map userMap = {'email': event.email, 'password': event.password};
 
     print('UserMap: $userMap');
 
