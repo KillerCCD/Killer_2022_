@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_apaga/blocs/login_bloc/login_bloc.dart';
 import 'package:smart_apaga/blocs/login_bloc/login_event.dart';
 import 'package:smart_apaga/blocs/login_bloc/login_state.dart';
+import 'package:smart_apaga/repositroy/validators.dart';
 import 'package:smart_apaga/ui/widgets/text_button.dart';
+import 'package:formz/formz.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key key}) : super(key: key);
@@ -21,12 +23,12 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
-        if (state is LoginLoading) {
-          //showLoadingDialog(context);
-          print('loading');
-        }
+        // if (state.status != null) {
+        //   //showLoadingDialog(context);
+        //   print('loading');
+        // }
 
-        if (state is LoginFailure) {
+        if (state.status == true) {
           // showErrorDialog(context);
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -35,10 +37,10 @@ class _LoginFormState extends State<LoginForm> {
             );
           print('failure');
         }
-        if (state is LoginSuccess) {
-          //showSuccessDialog(context);
-          print('succes');
-        }
+        // if (state.status != null) {
+        //   //showSuccessDialog(context);
+        //   print('succes');
+        // }
       },
       child: Form(
         key: _formKey,
@@ -77,9 +79,9 @@ class _LoginFormState extends State<LoginForm> {
                 backgroundColor: Colors.green.shade300,
               ),
               onPressed: () {
-                context.read<LoginBloc>().add(LoginSubmitted(
-                    email: _emailController.text,
-                    password: _passwordController.text));
+                if (_formKey.currentState.validate()) {
+                  context.read<LoginBloc>().add(const LoginSubmitted());
+                }
               },
               text: const Text(
                 'Login',
@@ -102,8 +104,10 @@ class _LoginFormState extends State<LoginForm> {
         child: TextFormField(
           controller: _emailController,
           validator: (value) {
-            if (value == null || value.isEmpty || state.email.isEmpty) {
-              const Text('asdfasdf');
+            if (value == null ||
+                value.isEmpty ||
+                !Validators.isValidEmail(value)) {
+              return 'invalid email';
             }
             return null;
           },
@@ -135,13 +139,14 @@ class _LoginFormState extends State<LoginForm> {
         ),
         child: TextFormField(
           controller: _passwordController,
-          // validator: (value) {
-          //   if (value == null || value.isEmpty || !state.isPasswordValid) {
-          //     buildAppBar(context, value);
-          //     return AppLocalizations.of(context).passwordErrorText;
-          //   }
-          //   return null;
-          // },
+          validator: (value) {
+            if (value == null ||
+                value.isEmpty ||
+                !Validators.isValidPassword(value)) {
+              return 'minimum 6 characters';
+            }
+            return null;
+          },
           onChanged: (password) => context
               .read<LoginBloc>()
               .add(LoginPasswordChanged(password: password)),

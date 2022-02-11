@@ -31,6 +31,8 @@ class UserRepository {
         pref.setBool('login', true);
         print(body);
         return true;
+      } else {
+        return false;
       }
     } catch (error) {
       print(error);
